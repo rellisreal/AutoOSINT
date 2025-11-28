@@ -1,9 +1,11 @@
 # AutoOSINT
 
 ## Overview
-The **OSINT Automation Tool** is planned to be a modular, web-based platform designed to automate Open-Source Intelligence (OSINT) gathering for a given target (e.g., email, username, domain, or file). Users can select which OSINT modules to run and receive consolidated reports in real-time. This project showcases full-stack development, API design, cybersecurity skills, and secure authentication practices.
+
+The **OSINT Automation Tool** is a web-based application designed to automate OSINT gathering.
 
 The tool will be built with:
+
 - **Backend:** Django REST Framework (DRF) with custom JWT authentication
 - **Frontend:** Vite + React
 - **Background Tasks:** Celery with Redis for asynchronous scan execution
@@ -13,6 +15,7 @@ The tool will be built with:
 ## Scope of Work
 
 ### **Primary Objectives**
+
 1. **User Authentication**
    - Implement secure, custom JWT-based authentication
    - Login, token refresh, and protected endpoints
@@ -52,6 +55,7 @@ The tool will be built with:
 ---
 
 ## Project Targets
+
 - **Target Data Sources:** Publicly available data such as:
   - Breach data (via public APIs)
   - Username presence across platforms
@@ -68,6 +72,7 @@ The tool will be built with:
 ---
 
 ## Achievements / Deliverables
+
 - Fully functional **Django REST API** backend
 - **Celery**-powered asynchronous task execution
 - **React + Vite** frontend with:
@@ -83,6 +88,7 @@ The tool will be built with:
 ---
 
 ## Future Enhancements
+
 - Add more OSINT modules (e.g., social media scrapers, advanced domain/IP analysis)
 - Add scheduling of recurring scans
 - Add user-specific scan history
@@ -93,17 +99,18 @@ The tool will be built with:
 ---
 
 ## Tech Stack
+
 | Layer | Technology |
-|-------|-----------|
+| ------- | ----------- |
 | Backend | Django REST Framework, Celery, Redis |
 | Frontend | React, Vite, Axios |
-| Database | PostgreSQL  |
+| Database | PostgreSQL |
 | Authentication | Custom JWT |
 | Task Queue | Celery with Redis broker |
 | Optional | WeasyPrint / ReportLab for PDF reports |
 
 ---
 
-## End Goal 
+## End Goal
 
-End-users should be able to run this locally, in a Docker Container. 
+End users should be able to run this locally, in a Docker Container.
