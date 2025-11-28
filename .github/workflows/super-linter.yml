@@ -24,6 +24,6 @@ jobs:
       - name: BetterCodeAHolic
         uses: github/super-linter@v4
         env:
-          VALIDATE_ALL_CODEBASE: true # Will change it to false later
+          VALIDATE_ALL_CODEBASE: false # Will change it to false later
           DEFAULT_BRANCH: "main"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
