@@ -104,4 +104,6 @@ The tool will be built with:
 
 ---
 
+## End Goal 
 
+End-users should be able to run this locally, in a Docker Container. 
