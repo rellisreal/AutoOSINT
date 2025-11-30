@@ -25,6 +25,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Local
 SECRET_KEY = os.getenv("DEV_SECRETKEY")
+# Sensitive Field Protection
+ENCRYPTION_KEY = os.getenv("DEV_ENCRYPTION_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -111,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ]
 }
 # Internationalization
