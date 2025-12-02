@@ -1,10 +1,11 @@
 import logging
 
 from back_api.customauth.setcookie import SetCookie
-from back_api.models import AgentType
-from back_api.serializers import AgentTypeSerializer
-from django.shortcuts import get_object_or_404
+from back_api.models import AgentType, OSINTQuery
+from back_api.serializers import AgentTypeSerializer, OSINTQuerySerializer
 from rest_framework import viewsets
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -48,18 +49,19 @@ class CustomRefreshToken(TokenRefreshView):
             return Response({"refresh": False})
 
 
-class AgentTypeViewSet(viewsets.ViewSet):
-    """
-    A ViewSet for listing or retrieving different agents.
-    """
+@api_view(["POST"])
+@permission_classes({IsAuthenticated})
+def is_authenticated(request):
+    return Response({"authenticated": True})
 
-    def list(self, request):
-        queryset = AgentType.objects.all()
-        serializer = AgentTypeSerializer(queryset, many=True)
-        return Response(serializer.data)
 
-    def retrieve(self, request, pk=None):
-        queryset = AgentType.objects.all()
-        agent = get_object_or_404(queryset, pk=pk)
-        serializer = AgentTypeSerializer(agent)
-        return Response(serializer.data)
+class AgentTypeViewSet(viewsets.ModelViewSet):
+    serializer_class = AgentTypeSerializer
+    queryset = AgentType.objects.all()
+    permission_classes = [IsAuthenticated]
+
+
+class CustomOSINTQuery(viewsets.ModelViewSet):
+    serializer_class = OSINTQuerySerializer
+    queryset = OSINTQuery.objects.all()
+    permission_classes = [IsAuthenticated]
