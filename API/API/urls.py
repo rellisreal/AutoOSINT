@@ -14,19 +14,26 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from back_api.views import AgentTypeViewSet
+from back_api.views import (
+    AgentTypeViewSet,
+    CustomAuthToken,
+    CustomOSINTQuery,
+    CustomRefreshToken,
+    is_authenticated,
+)
 from django.contrib import admin
 from django.urls import path
 from rest_framework.routers import DefaultRouter
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 router = DefaultRouter()
 router.register(r"agents", AgentTypeViewSet, basename="agent")
+router.register(r"OSINTQueries", CustomOSINTQuery, basename="OSINTQuery")
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
-    path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    path("api/token/", CustomAuthToken.as_view(), name="token_obtain_pair"),
+    path("api/token/refresh/", CustomRefreshToken.as_view(), name="token_refresh"),
+    path("api/token/verify", is_authenticated, name="token-verify"),
 ]
 
 urlpatterns += router.urls
